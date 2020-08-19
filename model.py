@@ -23,7 +23,7 @@ class CNN_Text(nn.Module):
         self.fc1 = nn.Linear(len(Ks) * Co, C)
 
         if self.args.static:
-            self.embed.weight.requires_grad = False
+            self.embed.weight.requires_grad = False  # 在反向传播的时候, 不要对这些词向量进行求导更新
 
     def forward(self, x):
         x = self.embed(x)  # (N, W, D)
